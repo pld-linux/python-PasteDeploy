@@ -9,7 +9,7 @@ Source0:	http://cheeseshop.python.org/packages/source/P/PasteDeploy/PasteDeploy-
 # Source0-md5:	74f8bd5ec130686f7dfd1e27d127994b
 URL:		http://pythonpaste.org/deploy/
 BuildRequires:	python-devel
-BuildRequires:  python-setuptools >= 0.6-0.a9.1
+BuildRequires:	python-setuptools >= 0.6-0.a9.1
 %pyrequires_eq	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
