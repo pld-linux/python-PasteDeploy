@@ -1,5 +1,5 @@
 Summary:	Load, configure, and compose WSGI applications and servers
-Summary(pl):	Wczytywanie, konfiguracja i ³±czenie aplikacji i serwerów WSGI
+Summary(pl.UTF-8):   Wczytywanie, konfiguracja i Å‚Ä…czenie aplikacji i serwerÃ³w WSGI
 Name:		python-PasteDeploy
 Version:	1.1
 Release:	1
@@ -20,11 +20,11 @@ URIs; these URIs can refer to Python Eggs for INI-style configuration
 files. Paste Script provides commands to serve applications based on
 this configuration file.
 
-%description -l pl
-To narzêdzie zawiera kod do wczytywania aplikacji i serwerów WSGI z
-URI; URI te mog± odnosiæ siê do pakietów Python Egg dla plików
-konfiguracyjnych w stylu INI. Paste Script udostêpnia polecenia do
-obs³ugi aplikacji w oparciu o ten plik konfiguracyjny.
+%description -l pl.UTF-8
+To narzÄ™dzie zawiera kod do wczytywania aplikacji i serwerÃ³w WSGI z
+URI; URI te mogÄ… odnosiÄ‡ siÄ™ do pakietÃ³w Python Egg dla plikÃ³w
+konfiguracyjnych w stylu INI. Paste Script udostÄ™pnia polecenia do
+obsÅ‚ugi aplikacji w oparciu o ten plik konfiguracyjny.
 
 %prep
 %setup -q -n PasteDeploy-%{version}
