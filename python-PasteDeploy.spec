@@ -1,12 +1,12 @@
 Summary:	Load, configure, and compose WSGI applications and servers
 Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów WSGI
 Name:		python-PasteDeploy
-Version:	1.3
+Version:	1.3.1
 Release:	0.1
 Group:		Development/Languages/Python
 License:	X11/MIT
 Source0:	http://cheeseshop.python.org/packages/source/P/PasteDeploy/PasteDeploy-%{version}.tar.gz
-# Source0-md5:	69c49aa1320c2e0bb2188bc477862f02
+# Source0-md5:	a14b360b4ddb0d3ca7aa9bad41d6c91c
 URL:		http://pythonpaste.org/deploy/
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools >= 0.6-0.a9.1
