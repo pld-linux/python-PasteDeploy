@@ -1,15 +1,16 @@
 Summary:	Load, configure, and compose WSGI applications and servers
 Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów WSGI
 Name:		python-PasteDeploy
-Version:	1.1
-Release:	1
+Version:	1.3
+Release:	0.1
 Group:		Development/Languages/Python
 License:	X11/MIT
 Source0:	http://cheeseshop.python.org/packages/source/P/PasteDeploy/PasteDeploy-%{version}.tar.gz
-# Source0-md5:	e4f16fe735db735c3fc0c6e168e72455
+# Source0-md5:	69c49aa1320c2e0bb2188bc477862f02
 URL:		http://pythonpaste.org/deploy/
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools >= 0.6-0.a9.1
+BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -39,7 +40,7 @@ python setup.py install \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
-find $RPM_BUILD_ROOT%{py_sitescriptdir} -name \*.py | xargs rm -f
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
