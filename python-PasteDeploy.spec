@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów 
 Name:		python-PasteDeploy
 Version:	1.3.1
 Release:	1
-Group:		Development/Languages/Python
+Group:		Libraries/Python
 License:	X11/MIT
 Source0:	http://cheeseshop.python.org/packages/source/P/PasteDeploy/PasteDeploy-%{version}.tar.gz
 # Source0-md5:	a14b360b4ddb0d3ca7aa9bad41d6c91c
