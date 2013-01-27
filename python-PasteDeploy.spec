@@ -1,19 +1,20 @@
+%define 	module	PasteDeploy
 Summary:	Load, configure, and compose WSGI applications and servers
 Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów WSGI
-Name:		python-PasteDeploy
-Version:	1.3.3
-Release:	3
-Group:		Libraries/Python
+Name:		python-%{module}
+Version:	1.5.0
+Release:	1
 License:	X11/MIT
-Source0:	http://cheeseshop.python.org/packages/source/P/PasteDeploy/PasteDeploy-%{version}.tar.gz
-# Source0-md5:	0598aa8ab4184ea8087839b811f92284
+Group:		Libraries/Python
+Source0:	http://cheeseshop.python.org/packages/source/P/PasteDeploy/%{module}-%{version}.tar.gz
+# Source0-md5:	f1a068a0b680493b6eaff3dd7690690f
 URL:		http://pythonpaste.org/deploy/
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	python-setuptools >= 0.6-0.a9.1
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
-%pyrequires_eq	python-modules
+Requires:	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -33,12 +34,13 @@ obsługi aplikacji w oparciu o ten plik konfiguracyjny.
 %setup -q -n PasteDeploy-%{version}
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-python setup.py install \
+%{__python} setup.py install \
 	--single-version-externally-managed \
+	--skip-build \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
@@ -50,5 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/*
-%{py_sitescriptdir}/paste/deploy
-%{py_sitescriptdir}/Paste*
+%dir %{py_sitescriptdir}/paste/deploy
+%{py_sitescriptdir}/paste/deploy/*.py[co]
+%{py_sitescriptdir}/paste/deploy/paster_templates
+%{py_sitescriptdir}/PasteDeploy-%{version}-py*.egg-info
+%{py_sitescriptdir}/PasteDeploy-%{version}-py*-nspkg.pth
