@@ -34,11 +34,11 @@ obsługi aplikacji w oparciu o ten plik konfiguracyjny.
 %setup -q -n PasteDeploy-%{version}
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install \
+%py_install \
 	--single-version-externally-managed \
 	--skip-build \
 	--optimize=2 \
