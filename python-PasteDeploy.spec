@@ -13,7 +13,7 @@ BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	python-setuptools >= 0.6-0.a9.1
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 Requires:	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
