@@ -2,40 +2,39 @@
 # Conditional build:
 %bcond_without	python2	# CPython 2.x module
 %bcond_without	python3	# CPython 3.x module
-%bcond_with	tests	# unit tests (not included in archive)
+%bcond_without	tests	# unit tests
 
 %define 	module	PasteDeploy
 Summary:	Load, configure, and compose WSGI applications and servers
 Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów WSGI
 Name:		python-%{module}
-Version:	1.5.2
-Release:	7
+# keep 2.x here for python2 support
+Version:	2.1.1
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/pastedeploy/
 Source0:	https://files.pythonhosted.org/packages/source/P/PasteDeploy/%{module}-%{version}.tar.gz
-# Source0-md5:	352b7205c78c8de4987578d19431af3b
-# dead
-#URL:		http://pythonpaste.org/deploy/
+# Source0-md5:	bc13219866a524626aee97127afa0348
 URL:		https://pypi.org/project/PasteDeploy/
 %if %{with python2}
-BuildRequires:	python-devel >= 1:2.5
+BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-setuptools >= 0.6-0.a9.1
 %if %{with tests}
-BuildRequires:	python-nose >= 0.11
+BuildRequires:	python-pytest
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-devel >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.4
 BuildRequires:	python3-setuptools >= 0.6-0.a9.1
 %if %{with tests}
-BuildRequires:	python3-nose >= 0.11
+BuildRequires:	python3-pytest
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python-Paste
-Requires:	python-modules >= 1:2.5
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,7 +55,7 @@ Summary:	Load, configure, and compose WSGI applications and servers
 Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów WSGI
 Group:		Libraries/Python
 Requires:	python3-Paste
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.4
 
 %description -n python3-%{module}
 This tool provides code to load WSGI applications and servers from
@@ -75,11 +74,23 @@ obsługi aplikacji w oparciu o ten plik konfiguracyjny.
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
+
+%if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTHONPATH=$(pwd) \
+%{__python} -m pytest tests
+%endif
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
+
+%if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTHONPATH=$(pwd) \
+%{__python3} -m pytest tests
+%endif
 %endif
 
 %install
@@ -101,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc README docs/*.txt
+%doc README.rst license.txt
 %{py_sitescriptdir}/paste/deploy
 %{py_sitescriptdir}/PasteDeploy-%{version}-py*.egg-info
 %{py_sitescriptdir}/PasteDeploy-%{version}-py*-nspkg.pth
@@ -110,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc README docs/*.txt
+%doc README.rst license.txt
 %{py3_sitescriptdir}/paste/deploy
 %{py3_sitescriptdir}/PasteDeploy-%{version}-py*.egg-info
 %{py3_sitescriptdir}/PasteDeploy-%{version}-py*-nspkg.pth
