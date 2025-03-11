@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	Wczytywanie, konfiguracja i łączenie aplikacji i serwerów 
 Name:		python-%{module}
 # keep 2.x here for python2 support
 Version:	2.1.1
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/pastedeploy/
